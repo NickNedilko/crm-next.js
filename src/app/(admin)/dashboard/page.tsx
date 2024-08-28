@@ -1,17 +1,12 @@
-import MagicButton from "@/app/components/magic-button";
+import React from 'react';
+import Header from '@/app/components/header';
 
+export interface PageProps {}
 
-
-const DashboardPage = () =>{
-
-
-    return(
-        <main>
-            <h1>Dashboard Page</h1>
-      <MagicButton/>
-
-        </main>
-    )
+export default function Page({}: PageProps) {
+  return (
+    <>
+      <Header>Dashboard</Header>
+    </>
+  );
 }
-
-export default DashboardPage;

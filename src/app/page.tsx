@@ -1,15 +1,17 @@
+'use client'
 
-import { headers } from "next/headers";
-import { Status, StatusLabel } from "./components/status-label";
-import { AddCompanyButton } from "./components/add-company-button";
-import MagicButton from "./components/magic-button";
+import { useRouter } from "next/navigation";
+import Button from "./components/button";
 
 export default function Home() {
+  const router = useRouter(); 
 
   return (
     <main>
-      <AddCompanyButton/>
-      <MagicButton/>
+      <h1 className="text-xl">Home page</h1>
+      <Button onClick={
+        ()=>router.push('/dashboard')
+      }>Dashboard</Button>
     </main>
   );
 }

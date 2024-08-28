@@ -1,25 +1,17 @@
-'use client'
+'use client';
 
-import { Button } from "@/app/components/button";
+import React from 'react';
 
-interface GlobalErrorProps{
-error: Error,
-reset: () => void 
-}
+export interface GlobalErrorProps {}
 
- const GlobalError = ({error, reset}: GlobalErrorProps) =>{
-
-
-    return(
-       <html>
-        <body>
+export default function GlobalError({}: GlobalErrorProps) {
+  return (
+    <html>
+      <body>
         <div>
-            <p>`Something global went wrong ${error.message}`</p>
-            <Button onClick={reset}>Try again</Button>
+          <p>Something globally went wrong</p>
         </div>
-        </body>
-       </html>
-    )
+      </body>
+    </html>
+  );
 }
-
-export default GlobalError;
