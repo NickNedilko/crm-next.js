@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { CompanyStatus } from '@/lib/api';
 
 export interface StatusLabelProps {
+  
   status: CompanyStatus;
   disabled?: boolean;
   styled?: boolean;
@@ -37,7 +38,7 @@ export default function StatusLabel({
       )}
     >
       <div className="w-1 h-1 mr-2 rounded-full bg-current" />
-      {label}
+      {status}
     </div>
   );
 }
