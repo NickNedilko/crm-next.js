@@ -1,16 +1,33 @@
 import React from 'react';
+import { MdAutoDelete } from "react-icons/md";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import StatusLabel from '@/app/components/status-label';
-import { Company } from '@/lib/api';
+import { Company, deleteCompany } from '@/lib/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export interface CompanyRowProps {
   company: Company;
 }
 
 export default function CompanyRow({ company }: CompanyRowProps) {
+  const queryClient = useQueryClient();
+  const id = company.id;
+  
+  const { mutateAsync } = useMutation({
+    mutationKey: ['companies', id],
+    mutationFn: () => deleteCompany(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['companies'],
+      });
+    },
+  });
+
   return (
+    
     <tr className="h-14 text-center text-gray-900 bg-white">
       <td className="text-xs font-medium text-blue-700 rounded-l border-l-4 border-blue-700">
         {company.categoryTitle}
@@ -40,8 +57,10 @@ export default function CompanyRow({ company }: CompanyRowProps) {
         </div>
       </td>
       <td>{company.countryTitle}</td>
-      <td className="rounded-r">
+      <td className="rounded-r relative">
         {new Date(company.joinedDate).toLocaleDateString('uk-UA')}
+        
+      <MdAutoDelete onClick={()=>mutateAsync()} className='absolute right-8 bottom-3 size-6 cursor-pointer'/>
       </td>
     </tr>
   );

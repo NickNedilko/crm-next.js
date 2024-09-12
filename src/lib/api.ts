@@ -44,7 +44,7 @@ export interface Company {
   avatar?: string;
 }
 
-export interface Promotion {
+export interface IPromotion {
   id: string;
   title: string;
   description: string;
@@ -120,6 +120,20 @@ export const createCompany = async (
   });
 };
 
+export const deleteCompany = async (
+  id: string,
+  init?: RequestInit,
+) => {
+  return sendRequest<Company>(buildUrl('companies', id), {
+    ...init,
+    method: 'Delete',
+    headers: {
+      ...(init && init.headers),
+      'content-type': 'application/json',
+    },
+  });
+};
+
 export const createPromotion = async (
   data: Omit<Promotion, 'id'>,
   init?: RequestInit,
@@ -127,6 +141,20 @@ export const createPromotion = async (
   return sendRequest<Promotion>(buildUrl('promotions'), {
     method: 'POST',
     body: JSON.stringify(data),
+    headers: {
+      ...(init && init.headers),
+      'content-type': 'application/json',
+    },
+  });
+};
+
+export const deletePromotion = async (
+  id: string,
+  init?: RequestInit,
+) => {
+  return sendRequest<Company>(buildUrl('promotions', id), {
+    ...init,
+    method: 'Delete',
     headers: {
       ...(init && init.headers),
       'content-type': 'application/json',
