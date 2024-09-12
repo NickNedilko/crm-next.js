@@ -60,7 +60,7 @@ export default function CompanyRow({ company }: CompanyRowProps) {
       <td className="rounded-r relative">
         {new Date(company.joinedDate).toLocaleDateString('uk-UA')}
         
-      <MdAutoDelete onClick={()=>mutateAsync()} className='absolute right-8 bottom-3 size-6 cursor-pointer'/>
+      <MdAutoDelete onClick={()=>mutateAsync()} className='absolute right-2 bottom-3 size-6 cursor-pointer'/>
       </td>
     </tr>
   );
